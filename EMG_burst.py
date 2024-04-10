@@ -4,7 +4,6 @@ import scipy as sp
 import scipy.signal # Some version needs it
 import scipy.stats  # Some version needs it
 
-import pandas as pd
 
 def moving_average(x, w):
     return np.convolve(x, np.ones(w), 'valid') / w
