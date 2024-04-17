@@ -1,0 +1,28 @@
+# Purpose
+Detection EMG activation (effectively turning EMG into binary 0/1 signal) with thresolding
+
+# Usage
+The function EMG_to_binary_signal in file EMG_burst.py does the main work.
+
+## Input arguments:
+signal: a n*1 numpy array for original EMG signal
+time: a numpy (also n*1) array corresponding timestamp (unit: sec)
+ref: a 2-element list for referncing "no muscle activation period"
+Fs: sampling frequency
+ma_dur: duration for moving average (unit: sec)
+  -> The larger ma_dur the smoother tkeo, but the signal will be more "off"
+thr_sig: the threshold is mean absolute tkeo during "ref" plus thr_sig times std of it.
+  -> The larger thr_sig, the more strict threshold is.
+bp_filt = True | False for optional bandpass pre-filtering before TKEO
+bp_filt_low = low limit for BP
+bp_filt_high = high limit for BP
+
+## Output:
+A python dictionary containing:
+'binary_signal': final binary signal, 
+'processed_signal': filtered signal, 
+'tkeo': tkeo itself, 
+'rect_smo_tkeo': rectified and smoothed (by moving average) tkeo
+
+## Example
+Please refer to test.py and test.csv
